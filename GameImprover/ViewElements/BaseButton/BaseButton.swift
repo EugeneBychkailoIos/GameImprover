@@ -22,11 +22,9 @@ struct BaseButton: View {
             action()
         }) {
             HStack {
-                // Якщо є зображення, показати його
                 if let image = image {
                     image
                 }
-                // Якщо є текст, показати його
                 if let title = title {
                     Text(title)
                         .font(font)

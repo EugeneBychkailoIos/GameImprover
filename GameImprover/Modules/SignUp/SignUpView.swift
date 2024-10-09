@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct SignUpView: View {
-    @StateObject private var viewModel = AuthorizationViewModel()
+    @StateObject private var viewModel = SignUpViewModel()
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @State private var showWebView = false
@@ -36,10 +36,12 @@ struct SignUpView: View {
                 if showWebView != true {
                     BaseText(text: "Authorize with steam and then, continue sign up in application!", font: Fonts.jersey25, foregroundColor: Colors.ancestralWater)
                         .padding([.leading, .trailing], 32)
-                        .padding(.bottom, 32)
+                        .padding(.top, 62)
+                    Spacer()
                     BaseButton(image: Image("steamButton"), width: 180, height: 35) {
                         showWebView = true
                         }
+                    .padding(.bottom, 64)
                     } else {
                    BaseButton(title: "Close", backgroundColor: Colors.ancestralWater, textColor: Colors.obsidianShard, width: 284, height: 40, font: Fonts.jersey10small) {
                        showWebView = false

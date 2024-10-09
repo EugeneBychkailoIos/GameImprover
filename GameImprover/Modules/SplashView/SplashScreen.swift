@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SplashScreen: View {
-    @Binding var isOnboarding: Bool // Додайте binding для зберігання значення
+    @Binding var isOnboarding: Bool
     @State private var isActive = false
     @State private var index = 0
     @State private var opacityValues: [Double] = Array(repeating: 0.0, count: 7)
@@ -19,7 +19,6 @@ struct SplashScreen: View {
     
     var body: some View {
         if isActive {
-            // Переходимо до онбордингу чи авторизації
             if isOnboarding {
                 OnBoardingView()
             } else {

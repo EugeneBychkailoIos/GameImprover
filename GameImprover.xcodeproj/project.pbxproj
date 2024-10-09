@@ -41,6 +41,18 @@
 		955576112CB54D1E00361FF3 /* BaseText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955576102CB54D1E00361FF3 /* BaseText.swift */; };
 		955576132CB556DF00361FF3 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955576122CB556DF00361FF3 /* SignInView.swift */; };
 		955576152CB556E700361FF3 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955576142CB556E700361FF3 /* SignInViewModel.swift */; };
+		955576532CB6547000361FF3 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955576522CB6547000361FF3 /* UserModel.swift */; };
+		955576572CB6555200361FF3 /* UserDefaultService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955576562CB6555200361FF3 /* UserDefaultService.swift */; };
+		955576592CB660A700361FF3 /* SteamAuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955576582CB660A700361FF3 /* SteamAuthView.swift */; };
+		9555765C2CB6641500361FF3 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9555765B2CB6641500361FF3 /* CustomTextField.swift */; };
+		955576602CB66D8500361FF3 /* ValidationRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9555765F2CB66D8500361FF3 /* ValidationRule.swift */; };
+		955576622CB6709300361FF3 /* ValidateMinimumLength.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955576612CB6709300361FF3 /* ValidateMinimumLength.swift */; };
+		955576642CB675E700361FF3 /* ValidationEmptyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955576632CB675E700361FF3 /* ValidationEmptyError.swift */; };
+		955576662CB675FF00361FF3 /* ValidationErrorEmptyPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955576652CB675FF00361FF3 /* ValidationErrorEmptyPattern.swift */; };
+		955576692CB6766C00361FF3 /* NSRegularExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955576682CB6766C00361FF3 /* NSRegularExpression.swift */; };
+		955576702CB692D100361FF3 /* ValidateMaximumLenght.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9555766F2CB692D100361FF3 /* ValidateMaximumLenght.swift */; };
+		955576722CB695E500361FF3 /* Jersey25-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 955576712CB695E500361FF3 /* Jersey25-Regular.ttf */; };
+		955576742CB697B700361FF3 /* BounceAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955576732CB697B700361FF3 /* BounceAnimation.swift */; };
 		95568F6F2CB004A50099E3DA /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95568F6E2CB004A50099E3DA /* SplashScreen.swift */; };
 		95568F712CB006C40099E3DA /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95568F702CB006C40099E3DA /* Colors.swift */; };
 		95568F732CB00B600099E3DA /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95568F722CB00B600099E3DA /* Fonts.swift */; };
@@ -63,7 +75,6 @@
 		958159362CAFE7220096A9AF /* GameImproverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958159352CAFE7220096A9AF /* GameImproverTests.swift */; };
 		958159402CAFE7220096A9AF /* GameImproverUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581593F2CAFE7220096A9AF /* GameImproverUITests.swift */; };
 		958159422CAFE7220096A9AF /* GameImproverUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958159412CAFE7220096A9AF /* GameImproverUITestsLaunchTests.swift */; };
-		958159592CAFFD930096A9AF /* Jersey25-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 958159582CAFFD930096A9AF /* Jersey25-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +105,18 @@
 		955576102CB54D1E00361FF3 /* BaseText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseText.swift; sourceTree = "<group>"; };
 		955576122CB556DF00361FF3 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		955576142CB556E700361FF3 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		955576522CB6547000361FF3 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		955576562CB6555200361FF3 /* UserDefaultService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultService.swift; sourceTree = "<group>"; };
+		955576582CB660A700361FF3 /* SteamAuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SteamAuthView.swift; sourceTree = "<group>"; };
+		9555765B2CB6641500361FF3 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		9555765F2CB66D8500361FF3 /* ValidationRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationRule.swift; sourceTree = "<group>"; };
+		955576612CB6709300361FF3 /* ValidateMinimumLength.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateMinimumLength.swift; sourceTree = "<group>"; };
+		955576632CB675E700361FF3 /* ValidationEmptyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationEmptyError.swift; sourceTree = "<group>"; };
+		955576652CB675FF00361FF3 /* ValidationErrorEmptyPattern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationErrorEmptyPattern.swift; sourceTree = "<group>"; };
+		955576682CB6766C00361FF3 /* NSRegularExpression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSRegularExpression.swift; sourceTree = "<group>"; };
+		9555766F2CB692D100361FF3 /* ValidateMaximumLenght.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateMaximumLenght.swift; sourceTree = "<group>"; };
+		955576712CB695E500361FF3 /* Jersey25-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Jersey25-Regular.ttf"; path = "../../../../gameimproverAssets/Jersey25-Regular.ttf"; sourceTree = "<group>"; };
+		955576732CB697B700361FF3 /* BounceAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BounceAnimation.swift; sourceTree = "<group>"; };
 		95568F6E2CB004A50099E3DA /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		95568F702CB006C40099E3DA /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		95568F722CB00B600099E3DA /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
@@ -120,7 +143,6 @@
 		9581593F2CAFE7220096A9AF /* GameImproverUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameImproverUITests.swift; sourceTree = "<group>"; };
 		958159412CAFE7220096A9AF /* GameImproverUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameImproverUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		958159532CAFF9480096A9AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		958159582CAFFD930096A9AF /* Jersey25-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Jersey25-Regular.ttf"; path = "GameImprover/Fonts/Jersey25-Regular.ttf"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,8 +199,6 @@
 			children = (
 				95568FA32CB024E90099E3DA /* AuthorizationView.swift */,
 				955575CC2CB3C67600361FF3 /* AuthorizationViewModel.swift */,
-				955576082CB54BA200361FF3 /* SignUp */,
-				955576072CB54B9900361FF3 /* SignIn */,
 			);
 			path = Authorization;
 			sourceTree = "<group>";
@@ -197,6 +217,7 @@
 			children = (
 				955576092CB54BB400361FF3 /* SignUpView.swift */,
 				9555760B2CB54BBD00361FF3 /* SignUpViewModel.swift */,
+				955576582CB660A700361FF3 /* SteamAuthView.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -204,8 +225,10 @@
 		9555760D2CB54CF500361FF3 /* ViewElements */ = {
 			isa = PBXGroup;
 			children = (
+				9555765A2CB6640000361FF3 /* CustomTextField */,
 				9555760F2CB54D1000361FF3 /* BaseText */,
 				9555760E2CB54D0100361FF3 /* BaseButton */,
+				955576732CB697B700361FF3 /* BounceAnimation.swift */,
 			);
 			path = ViewElements;
 			sourceTree = "<group>";
@@ -229,10 +252,127 @@
 		955576162CB55D4100361FF3 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				955576712CB695E500361FF3 /* Jersey25-Regular.ttf */,
 				95568FAE2CB040D10099E3DA /* Jersey10-Regular.ttf */,
-				958159582CAFFD930096A9AF /* Jersey25-Regular.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		955576502CB6545300361FF3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				955576512CB6546400361FF3 /* User */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		955576512CB6546400361FF3 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				955576522CB6547000361FF3 /* UserModel.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		955576542CB654CA00361FF3 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				9555766D2CB67A4300361FF3 /* Firebase */,
+				955576552CB654D400361FF3 /* UserDefault */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		955576552CB654D400361FF3 /* UserDefault */ = {
+			isa = PBXGroup;
+			children = (
+				955576562CB6555200361FF3 /* UserDefaultService.swift */,
+			);
+			name = UserDefault;
+			sourceTree = "<group>";
+		};
+		9555765A2CB6640000361FF3 /* CustomTextField */ = {
+			isa = PBXGroup;
+			children = (
+				9555765B2CB6641500361FF3 /* CustomTextField.swift */,
+			);
+			path = CustomTextField;
+			sourceTree = "<group>";
+		};
+		9555765D2CB66D6C00361FF3 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				9555765E2CB66D7100361FF3 /* Validation */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		9555765E2CB66D7100361FF3 /* Validation */ = {
+			isa = PBXGroup;
+			children = (
+				9555765F2CB66D8500361FF3 /* ValidationRule.swift */,
+				9555766A2CB6787E00361FF3 /* Rules */,
+				955576632CB675E700361FF3 /* ValidationEmptyError.swift */,
+				955576652CB675FF00361FF3 /* ValidationErrorEmptyPattern.swift */,
+			);
+			path = Validation;
+			sourceTree = "<group>";
+		};
+		955576672CB6765400361FF3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				955576682CB6766C00361FF3 /* NSRegularExpression.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9555766A2CB6787E00361FF3 /* Rules */ = {
+			isa = PBXGroup;
+			children = (
+				955576612CB6709300361FF3 /* ValidateMinimumLength.swift */,
+				9555766F2CB692D100361FF3 /* ValidateMaximumLenght.swift */,
+			);
+			path = Rules;
+			sourceTree = "<group>";
+		};
+		9555766B2CB679FC00361FF3 /* SplashView */ = {
+			isa = PBXGroup;
+			children = (
+				95568F6E2CB004A50099E3DA /* SplashScreen.swift */,
+			);
+			path = SplashView;
+			sourceTree = "<group>";
+		};
+		9555766C2CB67A2100361FF3 /* Recources */ = {
+			isa = PBXGroup;
+			children = (
+				955576162CB55D4100361FF3 /* Fonts */,
+				95568F992CB018880099E3DA /* animationLogo */,
+				95568F702CB006C40099E3DA /* Colors.swift */,
+				95568F722CB00B600099E3DA /* Fonts.swift */,
+				958159282CAFE7220096A9AF /* Assets.xcassets */,
+			);
+			path = Recources;
+			sourceTree = "<group>";
+		};
+		9555766D2CB67A4300361FF3 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				955575D32CB3F94800361FF3 /* FirebaseHelper.swift */,
+			);
+			name = Firebase;
+			sourceTree = "<group>";
+		};
+		9555766E2CB67A8200361FF3 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				9555766B2CB679FC00361FF3 /* SplashView */,
+				95568FA72CB035580099E3DA /* Onboarding */,
+				955575CE2CB3C67A00361FF3 /* Authorization */,
+				955576072CB54B9900361FF3 /* SignIn */,
+				955576082CB54BA200361FF3 /* SignUp */,
+			);
+			path = Modules;
 			sourceTree = "<group>";
 		};
 		95568F992CB018880099E3DA /* animationLogo */ = {
@@ -263,8 +403,6 @@
 		958159182CAFE71E0096A9AF = {
 			isa = PBXGroup;
 			children = (
-				95568FA12CB01F150099E3DA /* LaunchScreen.storyboard */,
-				95568F992CB018880099E3DA /* animationLogo */,
 				958159232CAFE71E0096A9AF /* GameImprover */,
 				958159342CAFE7220096A9AF /* GameImproverTests */,
 				9581593E2CAFE7220096A9AF /* GameImproverUITests */,
@@ -285,19 +423,18 @@
 		958159232CAFE71E0096A9AF /* GameImprover */ = {
 			isa = PBXGroup;
 			children = (
-				9555760D2CB54CF500361FF3 /* ViewElements */,
-				955576162CB55D4100361FF3 /* Fonts */,
-				955575D12CB3F93F00361FF3 /* GoogleService-Info.plist */,
-				958159532CAFF9480096A9AF /* Info.plist */,
+				95568FA12CB01F150099E3DA /* LaunchScreen.storyboard */,
 				958159242CAFE71E0096A9AF /* GameImproverApp.swift */,
-				95568F6E2CB004A50099E3DA /* SplashScreen.swift */,
-				95568FA72CB035580099E3DA /* Onboarding */,
-				955575CE2CB3C67A00361FF3 /* Authorization */,
-				95568F702CB006C40099E3DA /* Colors.swift */,
-				95568F722CB00B600099E3DA /* Fonts.swift */,
-				958159282CAFE7220096A9AF /* Assets.xcassets */,
+				9555766E2CB67A8200361FF3 /* Modules */,
+				955576502CB6545300361FF3 /* Models */,
+				9555760D2CB54CF500361FF3 /* ViewElements */,
+				955576542CB654CA00361FF3 /* Services */,
+				955576672CB6765400361FF3 /* Extensions */,
+				9555765D2CB66D6C00361FF3 /* Tools */,
+				9555766C2CB67A2100361FF3 /* Recources */,
+				958159532CAFF9480096A9AF /* Info.plist */,
+				955575D12CB3F93F00361FF3 /* GoogleService-Info.plist */,
 				9581592A2CAFE7220096A9AF /* Preview Content */,
-				955575D32CB3F94800361FF3 /* FirebaseHelper.swift */,
 			);
 			path = GameImprover;
 			sourceTree = "<group>";
@@ -461,12 +598,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				955575D02CB3EABD00361FF3 /* logo.png in Resources */,
-				958159592CAFFD930096A9AF /* Jersey25-Regular.ttf in Resources */,
 				95568F9F2CB018880099E3DA /* animation6.png in Resources */,
 				95568FA02CB018880099E3DA /* animation7.png in Resources */,
 				95568F9A2CB018880099E3DA /* animation1.png in Resources */,
 				95568F9C2CB018880099E3DA /* animation3.png in Resources */,
 				95568F9E2CB018880099E3DA /* animation5.png in Resources */,
+				955576722CB695E500361FF3 /* Jersey25-Regular.ttf in Resources */,
 				95568F9B2CB018880099E3DA /* animation2.png in Resources */,
 				95568F9D2CB018880099E3DA /* animation4.png in Resources */,
 				9581592C2CAFE7220096A9AF /* Preview Assets.xcassets in Resources */,
@@ -501,18 +638,29 @@
 				95568F6F2CB004A50099E3DA /* SplashScreen.swift in Sources */,
 				955576112CB54D1E00361FF3 /* BaseText.swift in Sources */,
 				9555760C2CB54BBD00361FF3 /* SignUpViewModel.swift in Sources */,
+				955576602CB66D8500361FF3 /* ValidationRule.swift in Sources */,
+				955576642CB675E700361FF3 /* ValidationEmptyError.swift in Sources */,
+				955576622CB6709300361FF3 /* ValidateMinimumLength.swift in Sources */,
+				955576742CB697B700361FF3 /* BounceAnimation.swift in Sources */,
 				95568F732CB00B600099E3DA /* Fonts.swift in Sources */,
+				9555765C2CB6641500361FF3 /* CustomTextField.swift in Sources */,
 				955576152CB556E700361FF3 /* SignInViewModel.swift in Sources */,
 				95568FA42CB024E90099E3DA /* AuthorizationView.swift in Sources */,
+				955576572CB6555200361FF3 /* UserDefaultService.swift in Sources */,
 				95568FA62CB034E30099E3DA /* OnboardingView.swift in Sources */,
 				9555760A2CB54BB400361FF3 /* SignUpView.swift in Sources */,
+				955576532CB6547000361FF3 /* UserModel.swift in Sources */,
+				955576702CB692D100361FF3 /* ValidateMaximumLenght.swift in Sources */,
 				955575CD2CB3C67600361FF3 /* AuthorizationViewModel.swift in Sources */,
 				955575CB2CB0423300361FF3 /* BaseButton.swift in Sources */,
 				955576132CB556DF00361FF3 /* SignInView.swift in Sources */,
 				95568FAB2CB035A30099E3DA /* OnboardingData.swift in Sources */,
+				955576662CB675FF00361FF3 /* ValidationErrorEmptyPattern.swift in Sources */,
 				95568FA92CB0356C0099E3DA /* OnboardingModel.swift in Sources */,
 				95568F712CB006C40099E3DA /* Colors.swift in Sources */,
+				955576592CB660A700361FF3 /* SteamAuthView.swift in Sources */,
 				955575D42CB3F94800361FF3 /* FirebaseHelper.swift in Sources */,
+				955576692CB6766C00361FF3 /* NSRegularExpression.swift in Sources */,
 				958159252CAFE71E0096A9AF /* GameImproverApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
