@@ -1,5 +1,5 @@
 //
-//  SignUpViewModel.swift
+//  SteamAuthViewModel.swift
 //  GameImprover
 //
 //  Created by jekster on 08.10.2024.
@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 
-class SignUpViewModel: ObservableObject {
+class SteamAuthViewModel: ObservableObject {
     @Published var steamID: String?
     @Published var errorMessage: String?
     @Published var isAuthenticated: Bool = false
@@ -52,8 +52,9 @@ class SignUpViewModel: ObservableObject {
 
     func extractSteamID(from openIDClaimedID: String) -> String? {
         if let range = openIDClaimedID.range(of: "id/") {
-            let steamID = String(openIDClaimedID[range.upperBound...])
-            return steamID
+            let steamIDWithPrefix = String(openIDClaimedID[range.upperBound...])
+            let digits = steamIDWithPrefix.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+            return digits.isEmpty ? nil : digits
         }
         return nil
     }

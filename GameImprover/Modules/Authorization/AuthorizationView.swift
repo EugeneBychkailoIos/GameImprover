@@ -20,7 +20,8 @@ struct AuthorizationView: View {
 
                 VStack {
                     Spacer()
-                    BounceAnimationView()
+                        Text("here will be image")
+                        Image("settingsIcon")
                     Spacer()
                     NavigationLink(destination: SignInView()) {
                         Text("Sign In")
@@ -31,7 +32,7 @@ struct AuthorizationView: View {
                             .font(Fonts.jersey10small)
                     }
                     .padding(.bottom, 24)
-                    NavigationLink(destination: SignUpView()) {
+                    NavigationLink(destination: SteamAuthView()) {
                         Text("Sign Up")
                             .frame(width: 284, height: 40)
                             .background(Colors.ancestralWater)

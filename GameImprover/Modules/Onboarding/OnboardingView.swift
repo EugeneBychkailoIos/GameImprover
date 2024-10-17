@@ -56,9 +56,6 @@ struct OnboardingView: View {
 }
 
 
-//#Preview {
-//    OnboardingView(onboarding: onboardingData[0])
-//}
 
 
 
@@ -101,11 +98,5 @@ struct OnBoardingView: View {
             .padding(.bottom, 50), alignment: .bottom
         )
         .ignoresSafeArea()
-    }
-}
-
-struct OnBoardingView_Previews: PreviewProvider {
-    static var previews: some View {
-        OnBoardingView()
     }
 }

@@ -84,6 +84,6 @@ struct SplashScreen: View {
     }
 }
 
-#Preview {
-    SplashScreen(isOnboarding: .constant(true))
-}
+//#Preview {
+//    SplashScreen(isOnboarding: .constant(true))
+//}

@@ -1,5 +1,5 @@
 //
-//  SteamAuthView.swift
+//  SteamAuthWebView.swift
 //  GameImprover
 //
 //  Created by jekster on 09.10.2024.
@@ -10,8 +10,8 @@ import SwiftUI
 import WebKit
 
 
-struct SteamAuthView: UIViewRepresentable {
-    @ObservedObject var viewModel: SignUpViewModel
+struct SteamAuthWebView: UIViewRepresentable {
+    @ObservedObject var viewModel: SteamAuthViewModel
     let completion: (URL?) -> Void
 
     func makeUIView(context: Context) -> WKWebView {
@@ -34,15 +34,17 @@ struct SteamAuthView: UIViewRepresentable {
     }
 
     class Coordinator: NSObject, WKNavigationDelegate {
-        let viewModel: SignUpViewModel
+        let viewModel: SteamAuthViewModel
         let completion: (URL?) -> Void
 
-        init(viewModel: SignUpViewModel, completion: @escaping (URL?) -> Void) {
+        init(viewModel: SteamAuthViewModel, completion: @escaping (URL?) -> Void) {
             self.viewModel = viewModel
             self.completion = completion
         }
 
-        func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        func webView(_ webView: WKWebView,
+                     decidePolicyFor navigationAction: WKNavigationAction,
+                     decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
             if let url = navigationAction.request.url {
                 print("Navigating to URL: \(url.absoluteString)")
                 

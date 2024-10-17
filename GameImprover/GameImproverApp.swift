@@ -16,7 +16,7 @@ struct GameImproverApp: App {
     var body: some Scene {
         WindowGroup {
 //            SplashScreen(isOnboarding: $isOnboarding)
-            BounceAnimationView()
+            HomeView()
         }
     }
 }

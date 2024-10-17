@@ -23,7 +23,10 @@ struct CustomTextFieldStyle: TextFieldStyle {
             .font(font)
             .overlay(
                 RoundedRectangle(cornerRadius: 5)
-                    .stroke(isValid ? Color.green : Color.red, lineWidth: 2)
+                    .stroke(isValid ? Color.green : 
+                                Color.red,
+                            lineWidth: 2
+                           )
             )
     }
 }
@@ -31,7 +34,6 @@ struct CustomTextFieldStyle: TextFieldStyle {
 
 
 struct CustomTextField: View {
-    
     var text: String
     var font: Font
     var color: Color
@@ -44,7 +46,10 @@ struct CustomTextField: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                BaseText(text: text, font: font, foregroundColor: color)
+                BaseText(text: text, 
+                         font: font,
+                         foregroundColor: color
+                )
                 Spacer()
             }
             .padding(.bottom, 11)
@@ -53,7 +58,9 @@ struct CustomTextField: View {
                 .onChange(of: textfieldText) { newValue in
                     validateText()
                 }
-                .textFieldStyle(CustomTextFieldStyle(isValid: isValid, font: font))
+                .textFieldStyle(CustomTextFieldStyle(isValid: isValid,
+                                                     font: font)
+                )
                 .frame(height: 42)
             
             if let errorMessage = errorMessage {

@@ -6,12 +6,14 @@
 //
 
 import Foundation
+import SwiftUI
+import FirebaseFirestore
+import FirebaseFirestoreCombineSwift
 
-
-struct UserModel: Identifiable {
-  var id = UUID()
-  var userName: String
-  var steamId: String
-  var phone: String
-  var image: String
+struct User: Codable, Identifiable {
+    @DocumentID var id: String?
+    
+    let email: String
+    let password: String
+    let steamiD: String
 }
