@@ -45,4 +45,12 @@ struct Colors {
         Color.init(hex: "D0D0D0")
     }
     
+    static var indiaGreen: Color {
+        Color.init(hex: "0F8005")
+    }
+    
+    static var artfulRed: Color {
+        Color.init(hex: "B70202")
+    }
+    
 }

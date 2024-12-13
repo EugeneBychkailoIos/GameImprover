@@ -20,8 +20,9 @@ struct AuthorizationView: View {
 
                 VStack {
                     Spacer()
-                        Text("here will be image")
-                        Image("settingsIcon")
+                        LogoAnimationView()
+//                    Text("here will me image")
+                    
                     Spacer()
                     NavigationLink(destination: SignInView()) {
                         Text("Sign In")

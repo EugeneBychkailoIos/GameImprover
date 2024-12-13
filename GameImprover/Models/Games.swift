@@ -7,9 +7,13 @@
 
 import Foundation
 
+// MARK: - Welcome
+struct OwnedGames: Codable {
+    let response: GamesResponse
+}
 
 // MARK: - Response
-struct Response: Codable {
+struct GamesResponse: Codable {
     let gameCount: Int
     let games: [Game]
 

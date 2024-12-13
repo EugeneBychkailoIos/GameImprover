@@ -11,8 +11,10 @@ struct SignInView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @StateObject private var viewModel = SignInViewModel()
     
-    @State private var loginTextfieldText = ""
-    @State private var passwordTextfieldText = ""
+//    @State private var loginTextfieldText = ""
+//    @State private var passwordTextfieldText = ""
+    @State private var loginTextfieldText = "jekster1fekster@icloud.com"
+    @State private var passwordTextfieldText = "Jekster0105"
     
     @State private var navigateToHome: Bool = false
     
@@ -72,6 +74,14 @@ struct SignInView: View {
                             print("Failed to sign in: \(error.localizedDescription)")
                         }
                     }
+//                    ServiceContainer.shared.authService.signIn(email: loginTextfieldText, password: passwordTextfieldText) { [weak self] result in
+//                        switch result {
+//                        case .success:
+//                            navigateToHome = true
+//                        case .failure(let error):
+//                            print("Failed to sign in: \(error.localizedDescription)")
+//                        }
+//                    }
                 }
                 NavigationLink(destination: HomeView(), isActive: $navigateToHome) {
                     EmptyView()

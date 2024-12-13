@@ -12,6 +12,8 @@ class ServiceContainer {
     static let shared = ServiceContainer()
     
     let networkService: NetworkServiceProtocol = NetworkService()
+    
     lazy var apiService: ApiServiceProtoc = Api(networkService: self.networkService)
-//    lazy var imageService: ImageService = ImageService()
+//    let authService: AuthService = AuthService()
+    lazy var imageService: ImageService = ImageService()
 }

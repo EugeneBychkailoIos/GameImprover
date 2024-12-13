@@ -7,18 +7,32 @@
 
 import Foundation
 
+class UserDefaultsService {
+    private let selectedLanguageKey = "selectedLanguageIndex"
+    private let selectedAppearanceKey = "selectedAppearanceIndex"
+    private let notificationsEnabledKey = "notificationsEnabled"
 
-final class UserDefaultService {
-    
-    enum Keys {
-        
+    func getSelectedLanguageIndex() -> Int {
+        return UserDefaults.standard.integer(forKey: selectedLanguageKey)
+    }
+
+    func setSelectedLanguageIndex(_ index: Int) {
+        UserDefaults.standard.set(index, forKey: selectedLanguageKey)
     }
     
-    // MARK: - Set
-    
-    
-    // MARK: - Objects
-    
-    
-    
+    func getSelectedAppearanceIndex() -> Int {
+        return UserDefaults.standard.integer(forKey: selectedAppearanceKey)
+    }
+
+    func setSelectedAppearanceIndex(_ index: Int) {
+        UserDefaults.standard.set(index, forKey: selectedAppearanceKey)
+    }
+
+    func getNotificationsEnabled() -> Bool {
+        return UserDefaults.standard.bool(forKey: notificationsEnabledKey)
+    }
+
+    func setNotificationsEnabled(_ enabled: Bool) {
+        UserDefaults.standard.set(enabled, forKey: notificationsEnabledKey)
+    }
 }

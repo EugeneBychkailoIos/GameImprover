@@ -10,19 +10,27 @@ import Foundation
 enum Endpoints {
     var pass: String {
         switch self {
-        case.getFriendLits:
-            return "/GetFriendList/v0001/?"
+        case.getFriendList(let key, let id):
+            return "GetFriendList/v0001/?key=" + key + "&steamid=" + id + "&relationship=friend"
         case.getUserStatsForGame:
             return "GetUserStatsForGame/v0002/?"
-        case.getOwnedGames:
-            return "GetOwnedGames/v0001/?"
+        case.getOwnedGames(let key, let id):
+            return "GetOwnedGames/v0001/?key=" + key + "&steamid=" + id + "&format=json&skip_unvetted_apps=false&include_played_free_games=1"
         case.getPlayerSummaries(let key, let id):
             return "GetPlayerSummaries/v0002/?key=" + key + "&steamids=" + id
-       
+        case.getDotaMatchHistory(let key, let id):
+            return "GetMatchHistoryBySequenceNum/v1/?key=" + key + "&steamid=" + id
+        case.getLastMatches(let key, let id, let matches):
+            return "GetMatchHistory/v1/?key=" + key + "&account_id=" + id + "&matches_requested=" + "\(matches)"
+        case.openDotaMatchById(let matchId, let key):
+            return "matches/\(matchId)?api_key=\(key)"
         }
     }
-    case getFriendLits
+    case getFriendList(String, String)
     case getUserStatsForGame
-    case getOwnedGames
+    case getOwnedGames(String, String)
     case getPlayerSummaries(String, String)
+    case getDotaMatchHistory(String,String)
+    case getLastMatches(String, String, Int)
+    case openDotaMatchById(String, String)
 }

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct SplashScreen: View {
     @Binding var isOnboarding: Bool
@@ -18,11 +19,16 @@ struct SplashScreen: View {
     private let images = (1...7).map { Image("animation\($0)") }
     
     var body: some View {
+        // TO-DO: - move this logic for app navigation.
         if isActive {
             if isOnboarding {
                 OnBoardingView()
             } else {
-                AuthorizationView()
+                if Auth.auth().currentUser != nil {
+                   HomeView()
+                } else {
+                    AuthorizationView()
+                }
             }
         } else {
             ZStack {
@@ -83,7 +89,3 @@ struct SplashScreen: View {
         }
     }
 }
-
-//#Preview {
-//    SplashScreen(isOnboarding: .constant(true))
-//}

@@ -23,7 +23,7 @@ class SignUpViewModel: ObservableObject {
                 return
             }
             
-            guard let uid = authResult?.user.uid else {
+            guard (authResult?.user.uid) != nil else {
                 completion(.failure(NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Unable to get user ID."])))
                 return
             }

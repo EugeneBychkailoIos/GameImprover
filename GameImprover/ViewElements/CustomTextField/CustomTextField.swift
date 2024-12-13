@@ -23,8 +23,8 @@ struct CustomTextFieldStyle: TextFieldStyle {
             .font(font)
             .overlay(
                 RoundedRectangle(cornerRadius: 5)
-                    .stroke(isValid ? Color.green : 
-                                Color.red,
+                    .stroke(isValid ? Colors.indiaGreen :
+                                Colors.artfulRed,
                             lineWidth: 2
                            )
             )
@@ -89,5 +89,4 @@ struct CustomTextField: View {
             }
         }
     }
-
 }

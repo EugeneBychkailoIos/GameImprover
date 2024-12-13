@@ -11,9 +11,9 @@ import FirebaseFirestore
 import FirebaseFirestoreCombineSwift
 
 struct User: Codable, Identifiable {
-    @DocumentID var id: String?
     
+    @DocumentID var id: String?
+    let createdAt: Timestamp
     let email: String
-    let password: String
-    let steamiD: String
+    let steamId: String
 }

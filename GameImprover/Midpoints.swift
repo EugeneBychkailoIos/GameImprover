@@ -11,11 +11,11 @@ enum Midpoints {
     var pass: String {
         switch self {
         case.dotaMain:
-            return "/IDOTA2Match_570"
+            return "IDOTA2Match_570/"
         case.steamUser:
             return "ISteamUser/"
         case.playerService:
-            return "/IPlayerService"
+            return "IPlayerService/"
         case.steamUserStats:
             return "/ISteamUserStats/"
         }

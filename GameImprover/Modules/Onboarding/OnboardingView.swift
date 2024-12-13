@@ -49,7 +49,8 @@ struct OnboardingView: View {
           isAnimating = true
         }
       }
-      .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
+      .frame(minWidth: 0, maxWidth: .infinity,
+             minHeight: 0, maxHeight: .infinity, alignment: .center)
       .background(LinearGradient(gradient: Gradient(colors: onboarding.gradientColors), startPoint: .top, endPoint: .bottom))
       .ignoresSafeArea()
     }

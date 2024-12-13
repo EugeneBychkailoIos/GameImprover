@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreCombineSwift
+import FirebaseAuth
 
 class FirebaseFirestoreHelper {
     
@@ -19,12 +20,6 @@ class FirebaseFirestoreHelper {
 
     // MARK: - Add Data to Firestore
     
-    /// Додає документ з даними до конкретної колекції
-    /// - Parameters:
-    ///   - collection: Ім'я колекції
-    ///   - data: Дані для збереження
-    ///   - documentID: (Необов'язковий) Ідентифікатор документа, якщо його потрібно задати
-    ///   - completion: Блок завершення з результатом
     func addDocument(toCollection collection: String, 
                      data: [String: Any],
                      documentID: String? = nil,
@@ -48,12 +43,6 @@ class FirebaseFirestoreHelper {
         }
     }
     
-    /// Оновлює документ у конкретній колекції
-    /// - Parameters:
-    ///   - collection: Ім'я колекції
-    ///   - documentID: Ідентифікатор документа
-    ///   - data: Дані для оновлення
-    ///   - completion: Блок завершення з результатом
     func updateDocument(inCollection collection: String,
                         documentID: String,
                         data: [String: Any],
@@ -67,11 +56,6 @@ class FirebaseFirestoreHelper {
         }
     }
     
-    /// Видаляє документ з колекції
-    /// - Parameters:
-    ///   - collection: Ім'я колекції
-    ///   - documentID: Ідентифікатор документа для видалення
-    ///   - completion: Блок завершення з результатом
     func deleteDocument(fromCollection collection: String,
                         documentID: String,
                         completion: @escaping (Result<Void, Error>) -> Void) {
@@ -85,11 +69,7 @@ class FirebaseFirestoreHelper {
     }
 
     // MARK: - Fetch Data from Firestore
-    
-    /// Отримує всі документи з конкретної колекції
-    /// - Parameters:
-    ///   - collection: Ім'я колекції
-    ///   - completion: Блок завершення з результатом
+
     func getDocuments(fromCollection collection: String, 
                       completion: @escaping (Result<[DocumentSnapshot], Error>) -> Void) {
         db.collection(collection).getDocuments { snapshot, error in
@@ -101,11 +81,7 @@ class FirebaseFirestoreHelper {
         }
     }
     
-    /// Отримує один документ за ID
-    /// - Parameters:
-    ///   - collection: Ім'я колекції
-    ///   - documentID: Ідентифікатор документа
-    ///   - completion: Блок завершення з результатом
+    
     func getDocument(fromCollection collection: String,
                      documentID: String,
                      completion: @escaping (Result<DocumentSnapshot, Error>) -> Void) {
@@ -119,4 +95,51 @@ class FirebaseFirestoreHelper {
             }
         }
     }
+    
+
+    func getHeroImageURLByID(heroID: Int) async throws -> (String, String) {
+        guard let user = Auth.auth().currentUser else {
+            throw NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "User is not authenticated."])
+        }
+
+        let snapshot = try await db.collection("HeroImages")
+            .whereField("id", isEqualTo: heroID)
+            .getDocuments()
+
+        guard let document = snapshot.documents.first,
+              let imageURL = document.get("image") as? String else {
+            throw NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Image URL not found in Firestore."])
+        }
+
+        let documentID = document.documentID
+        return (documentID, imageURL)
+    }
+    
+    
+    func getAllHeroImages() async throws -> [(id: Int, imageURL: String, documentName: String)] {
+        guard let user = Auth.auth().currentUser else {
+            throw NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "User is not authenticated."])
+        }
+        
+        let snapshot = try await db.collection("HeroImages").getDocuments()
+        
+        guard !snapshot.documents.isEmpty else {
+            throw NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "No documents found in Firestore."])
+        }
+
+        var heroImages: [(id: Int, imageURL: String, documentName: String)] = []
+        
+        for document in snapshot.documents {
+            if let imageURL = document.get("image") as? String,
+               let heroID = document.get("id") as? Int {
+                let documentName = document.documentID.replacingOccurrences(of: "_", with: " ")
+                
+                heroImages.append((id: heroID, imageURL: imageURL, documentName: documentName))
+            }
+        }
+        
+        return heroImages
+    }
+
+
 }

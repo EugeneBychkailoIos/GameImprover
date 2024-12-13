@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @EnvironmentObject var appearanceSettings: AppearanceSettings
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    var cellTitles = ["Profile", "Notifications", "Privacy", "Security", "Appearance", "Language", "Logout"]
-    
+    var settingsCellTitles = ["Profile", "Notifications", "Privacy", "Appearance", "Language", "Logout"]
     
     var btnBack: some View {
         Button(action: {
@@ -19,8 +19,7 @@ struct SettingsView: View {
             HStack {
                 BaseText(text: "Go Back",
                          font: Fonts.jersey25,
-                         foregroundColor: Colors.ancestralWater
-                )
+                         foregroundColor: Colors.ancestralWater)
             }
         }
     }
@@ -36,9 +35,9 @@ struct SettingsView: View {
                     
                     ScrollView {
                         LazyVGrid(columns: [GridItem(.flexible())], spacing: 16) {
-                            ForEach(0..<cellTitles.count, id: \.self) { index in
+                            ForEach(0..<settingsCellTitles.count, id: \.self) { index in
                                 NavigationLink(destination: destinationView(for: index)) {
-                                    CellView(title: cellTitles[index])
+                                    SettingsCellView(title: settingsCellTitles[index])
                                         .frame(width: geometry.size.width, height: 64)
                                 }
                             }
@@ -52,7 +51,6 @@ struct SettingsView: View {
             .navigationBarBackButtonHidden(true)
         }
     }
-    
    
     @ViewBuilder
     func destinationView(for index: Int) -> some View {
@@ -64,129 +62,13 @@ struct SettingsView: View {
         case 2:
             PrivacyView()
         case 3:
-            SecurityView()
-        case 4:
             AppearanceView()
-        case 5:
+        case 4:
             LanguageView()
-        case 6:
+        case 5:
             LogoutView()
         default:
-            DetailView(title: "Unknown")
+            EmptyView()
         }
-    }
-}
-
-struct CellView: View {
-    var title: String
-
-    var body: some View {
-        VStack {
-            BaseText(text: title,
-                     font: Fonts.jersey25,
-                     foregroundColor: Colors.obsidianShard
-            )
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Colors.ancestralWater)
-    }
-}
-
-
-struct ProfileView: View {
-    var body: some View {
-        ZStack {
-            Color.green.edgesIgnoringSafeArea(.all)
-            Text("Profile View")
-                .font(.largeTitle)
-                .foregroundColor(.white)
-        }
-        .navigationBarTitle("Profile", displayMode: .inline)
-    }
-}
-
-struct NotificationsView: View {
-    var body: some View {
-        ZStack {
-            Color.orange.edgesIgnoringSafeArea(.all)
-            Text("Notifications View")
-                .font(.largeTitle)
-                .foregroundColor(.white)
-        }
-        .navigationBarTitle("Notifications", displayMode: .inline)
-    }
-}
-
-struct PrivacyView: View {
-    var body: some View {
-        ZStack {
-            Color.purple.edgesIgnoringSafeArea(.all)
-            Text("Privacy View")
-                .font(.largeTitle)
-                .foregroundColor(.white)
-        }
-        .navigationBarTitle("Privacy", displayMode: .inline)
-    }
-}
-
-struct SecurityView: View {
-    var body: some View {
-        ZStack {
-            Color.red.edgesIgnoringSafeArea(.all)
-            Text("Security View")
-                .font(.largeTitle)
-                .foregroundColor(.white)
-        }
-        .navigationBarTitle("Security", displayMode: .inline)
-    }
-}
-
-struct AppearanceView: View {
-    var body: some View {
-        ZStack {
-            Color.blue.edgesIgnoringSafeArea(.all)
-            Text("Appearance View")
-                .font(.largeTitle)
-                .foregroundColor(.white)
-        }
-        .navigationBarTitle("Appearance", displayMode: .inline)
-    }
-}
-
-struct LanguageView: View {
-    var body: some View {
-        ZStack {
-            Color.yellow.edgesIgnoringSafeArea(.all)
-            Text("Language View")
-                .font(.largeTitle)
-                .foregroundColor(.white)
-        }
-        .navigationBarTitle("Language", displayMode: .inline)
-    }
-}
-
-struct LogoutView: View {
-    var body: some View {
-        ZStack {
-            Color.gray.edgesIgnoringSafeArea(.all)
-            Text("You have been logged out.")
-                .font(.largeTitle)
-                .foregroundColor(.white)
-        }
-        .navigationBarTitle("Logout", displayMode: .inline)
-    }
-}
-
-struct DetailView: View {
-    var title: String
-
-    var body: some View {
-        ZStack {
-            Color.gray.edgesIgnoringSafeArea(.all)
-            Text("This is the \(title) screen")
-                .font(.largeTitle)
-                .foregroundColor(.white)
-        }
-        .navigationBarTitle(title, displayMode: .inline)
     }
 }

@@ -8,7 +8,23 @@
 import SwiftUI
 
 struct GamesView: View {
-    var body: some View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
+    var btnBack: some View {
+        Button(action: {
+            self.presentationMode.wrappedValue.dismiss()
+        }) {
+            HStack {
+                BaseText(text: "Go Back",
+                         font: Fonts.jersey25,
+                         foregroundColor: Colors.ancestralWater
+                )
+            }
+        }
+    }
+    
+    
+    var body: some View { 
         NavigationView {
             ZStack {
                 LinearGradient(gradient: Gradient(colors: [Colors.obsidianShard.opacity(0.8),
@@ -23,5 +39,7 @@ struct GamesView: View {
             .navigationBarTitle("Tab 1", displayMode: .inline)
             .navigationBarBackButtonHidden(true)
         }
+        .navigationBarItems(leading: btnBack)
+        .navigationBarBackButtonHidden(true)
     }
 }

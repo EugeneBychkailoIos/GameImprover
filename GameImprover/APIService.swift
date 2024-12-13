@@ -8,49 +8,94 @@
 import Foundation
 
 protocol ApiServiceProtoc {
-    func getUserInfo(key: String, id: String, _ compl: @escaping (Result<[Player], Error>)->())
-    
+    func getUserInfo(key: String, id: String) async throws -> [Player]
+    func getFrinedList(key: String, id: String) async throws -> [Friend]
+    func getOwnedGames(key: String, id: String) async throws -> [Game]
+    func getLastMatches(key: String, id: String, matches: Int) async throws -> [LastMatch]
+    func getMatchById(key: String, matchId: String) async throws -> [MatchDetailModel]
 }
 
-class Api {
+ class Api {
     private let networkService: NetworkServiceProtocol
     fileprivate let decoder = JSONDecoder()
     
-    init (networkService: NetworkServiceProtocol) {
+    init(networkService: NetworkServiceProtocol) {
         self.networkService = networkService
     }
+    
     private let base = "https://api.steampowered.com/"
- 
+    private let openDotaBase = "https://api.opendota.com/api/"
 }
 
 extension Api: ApiServiceProtoc {
     
-    func getUserInfo(key: String, id: String, _ compl: @escaping (Result<[Player], Error>) -> ()) {
+    func getUserInfo(key: String, id: String) async throws -> [Player] {
         guard let url = URL(string: base + Midpoints.steamUser.pass + Endpoints.getPlayerSummaries(key, id).pass) else {
-            compl(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
-            return
+            throw NSError(domain: "Invalid URL", code: 0, userInfo: nil)
         }
         
         var request = URLRequest(url: url)
-        print(url)
-        
         request.setValue("application/json", forHTTPHeaderField: "Accept")
-
         
-        self.networkService.request(request: request) { [unowned self] (result) in
-            switch result {
-            case .success(let data):
-                do {
-                    let userInfo = try self.decoder.decode(UserInfo.self, from: data)
-                    compl(.success(userInfo.response.players))
-                    
-                } catch {
-                    compl(.failure(error))
-                }
-            case .fail(let error):
-                compl(.failure(error))
-            }
-        }
+        let data = try await networkService.request(request: request)
+        
+        let userInfo = try decoder.decode(UserInfo.self, from: data)
+        return userInfo.response.players
     }
-
+    
+    func getFrinedList(key: String, id: String) async throws -> [Friend] {
+        guard let url = URL(string: base + Midpoints.steamUser.pass + Endpoints.getFriendList(key, id).pass) else {
+            throw NSError(domain: "Invalid URL", code: 0, userInfo: nil)
+        }
+        
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let data = try await networkService.request(request: request)
+        
+        let friends = try decoder.decode(Friends.self, from: data)
+        return friends.friendslist.friends
+    }
+    
+    func getOwnedGames(key: String, id: String) async throws -> [Game] {
+        guard let url = URL(string: base + Midpoints.playerService.pass + Endpoints.getOwnedGames(key, id).pass) else {
+            throw NSError(domain: "Invalid URL", code: 0, userInfo: nil)
+        }
+        
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let data = try await networkService.request(request: request)
+        
+        let games = try decoder.decode(OwnedGames.self, from: data)
+        return games.response.games
+    }
+    
+    func getLastMatches(key: String, id: String, matches: Int) async throws -> [LastMatch] {
+        guard let url = URL(string: base + Midpoints.dotaMain.pass + Endpoints.getLastMatches(key, id, matches).pass) else {
+            throw NSError(domain: "Invalid URL", code: 0, userInfo: nil)
+        }
+        
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let data = try await networkService.request(request: request)
+        
+        let dotaMatches = try decoder.decode(LastMatchesModel.self, from: data)
+        return dotaMatches.result.matches
+    }
+    
+    func getMatchById(key: String, matchId: String) async throws -> [MatchDetailModel] {
+        guard let url = URL(string: openDotaBase + Endpoints.openDotaMatchById(matchId, key).pass) else {
+            throw NSError(domain: "Invalid URL", code: 0, userInfo: nil)
+        }
+        
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let data = try await networkService.request(request: request)
+        
+        let match = try decoder.decode(MatchDetailModel.self, from: data)
+        return [match]
+    }
 }

@@ -8,29 +8,13 @@
 import Foundation
 
 protocol NetworkServiceProtocol {
-    func request(request: URLRequest, handler: @escaping (NetworkService.Result) -> Void)
-    
+    func request(request: URLRequest) async throws -> Data
 }
 
-class NetworkService {
-    public enum Result {
-        case success(Data)
-        case fail(Error)
+class NetworkService: NetworkServiceProtocol {
+    func request(request: URLRequest) async throws -> Data {
+        let (data, _) = try await URLSession.shared.data(for: request)
+        return data
     }
 }
 
-extension NetworkService: NetworkServiceProtocol {
-    func request(request: URLRequest, handler: @escaping (NetworkService.Result)-> Void) {
-        let task = URLSession.shared.dataTask(with: request) { (data, _, Error) in
-            if let Error = Error {
-                handler(Result.fail(Error))
-                return
-            }
-            if let data = data {
-                handler(Result.success(data))
-                return
-            }
-        }
-        task.resume()
-    }
-}

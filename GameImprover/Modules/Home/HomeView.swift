@@ -7,15 +7,9 @@
 
 import SwiftUI
 
-struct game {
-    let name: String
-}
-
 struct HomeView: View {
-    
-    let viewModel: HomeViewModel = HomeViewModel()
-    
-    @State var gamesArray: [game] = [game(name:"Dota 2"), game(name:"CS 2")]
+    @StateObject private var viewModel = HomeViewModel()
+    @StateObject private var imageService = ImageService()
 
     var body: some View {
         GeometryReader { geometry in
@@ -27,51 +21,63 @@ struct HomeView: View {
                     .edgesIgnoringSafeArea(.all)
                     
                     VStack {
-                        HStack {
-                            Spacer()
-                            NavigationLink(destination: SettingsView()) {
-                                Image("settingsIcon")
-                                    .resizable()
-                                    .renderingMode(.template)
-                                    .foregroundColor(Colors.ancestralWater)
-                                    .frame(width: 24, height: 24)
-                            }
-                            
-                            
-                        }
-                        .padding([.top, .trailing, .bottom], 30)
-                        
-                        ScrollView {
-                            LazyVGrid(columns: [GridItem(.flexible())], spacing: 16) {
-                                ForEach(0..<gamesArray.count, id: \.self) { index in
-                                    NavigationLink(destination: StatsView(title: gamesArray[index].name)) {
-                                        GameCellView(title: gamesArray[index].name)
-                                            .frame(width: geometry.size.width, height: 64)
+                        if viewModel.isLoading {
+                            ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: Colors.ancestralWater))
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .controlSize(.large)
+                        } else {
+                            if let errorMessage = viewModel.errorMessage {
+                                Text("Error: \(errorMessage)")
+                                    .foregroundColor(.red)
+                            } else {
+                                HStack {
+                                    BaseText(text: viewModel.userNickName, font: Fonts.jersey25, foregroundColor: Colors.ancestralWater)
+                                    Spacer()
+                                    NavigationLink(destination: SettingsView()) {
+                                        Image("settingsIcon")
+                                            .resizable()
+                                            .renderingMode(.template)
+                                            .foregroundColor(Colors.ancestralWater)
+                                            .frame(width: 24, height: 24)
                                     }
                                 }
+                                .padding([.top, .trailing, .bottom, .leading], 30)
+                                
+                                if let image = imageService.image {
+                                    image
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 70, height: 70)
+                                }
+                                
+                                ScrollView {
+                                    LazyVGrid(columns: [GridItem(.flexible())], spacing: 16) {
+                                        ForEach(viewModel.gamesArray, id: \.self) { game in
+                                            NavigationLink(destination: game == "Dota 2" ?
+                                                           AnyView(DotaStatsView()) :
+                                                           AnyView(CS2StatsView())
+                                            ) {
+                                                GameCellView(title: game)
+                                                    .frame(width: geometry.size.width, height: 64)
+                                            }
+                                        }
+                                    }
+                                    .padding(.horizontal, 18)
+                                }
                             }
-                            .padding(.horizontal, 18)
                         }
                     }
                     .navigationBarBackButtonHidden(true)
                     .onAppear {
-                        viewModel.getUserInfo()
+                        Task {
+                            await viewModel.loadUserData()
+                            imageService.downloadImage(urlString: viewModel.userAvatarString)
+                        }
                     }
                 }
             }
         }
-    }
-}
-
-
-struct GameCellView: View {
-    var title: String
-
-    var body: some View {
-        VStack {
-            BaseText(text: title, font: Fonts.jersey25, foregroundColor: Colors.obsidianShard)
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Colors.ancestralWater)
+        .navigationBarBackButtonHidden(true)
     }
 }
