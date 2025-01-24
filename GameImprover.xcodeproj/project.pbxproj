@@ -82,7 +82,7 @@
 		95580CA02CC77F7300DD8BCC /* KDA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95580C9F2CC77F7300DD8BCC /* KDA.swift */; };
 		95580CA22CC77F8500DD8BCC /* KDAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95580CA12CC77F8500DD8BCC /* KDAView.swift */; };
 		95580CA62CC795F000DD8BCC /* MapTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95580CA52CC795F000DD8BCC /* MapTimeline.swift */; };
-		95580CA92CC7A05C00DD8BCC /* ActualRank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95580CA82CC7A05C00DD8BCC /* ActualRank.swift */; };
+		95580CA92CC7A05C00DD8BCC /* ActualRatingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95580CA82CC7A05C00DD8BCC /* ActualRatingHelper.swift */; };
 		95580CAE2CCA1D5B00DD8BCC /* MatchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95580CAD2CCA1D5B00DD8BCC /* MatchDetailView.swift */; };
 		95580CB02CCA8D7000DD8BCC /* DotaHeroStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95580CAF2CCA8D7000DD8BCC /* DotaHeroStatsView.swift */; };
 		95580CB42CCA9ACD00DD8BCC /* CS2StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95580CB32CCA9ACD00DD8BCC /* CS2StatsView.swift */; };
@@ -95,7 +95,7 @@
 		95580CC82CCB8BC900DD8BCC /* LanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95580CC72CCB8BC900DD8BCC /* LanguageView.swift */; };
 		95580CCB2CCB8D2300DD8BCC /* SettingsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95580CCA2CCB8D2300DD8BCC /* SettingsCellView.swift */; };
 		95580CCD2CCB8D8800DD8BCC /* GameCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95580CCC2CCB8D8800DD8BCC /* GameCellView.swift */; };
-		95580CCF2CCF932400DD8BCC /* DotaMatchDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95580CCE2CCF932400DD8BCC /* DotaMatchDetails.swift */; };
+		95580CCF2CCF932400DD8BCC /* CSMatchDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95580CCE2CCF932400DD8BCC /* CSMatchDetails.swift */; };
 		95580CD12CCFE6ED00DD8BCC /* LastMatchesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95580CD02CCFE6ED00DD8BCC /* LastMatchesModel.swift */; };
 		9567ED602D0063D300F6106D /* MatchDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9567ED5F2D0063D300F6106D /* MatchDetailModel.swift */; };
 		9571B7642CB7D0A200743F1A /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9571B7632CB7D0A200743F1A /* SignUpView.swift */; };
@@ -124,6 +124,9 @@
 		958159362CAFE7220096A9AF /* GameImproverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958159352CAFE7220096A9AF /* GameImproverTests.swift */; };
 		958159402CAFE7220096A9AF /* GameImproverUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581593F2CAFE7220096A9AF /* GameImproverUITests.swift */; };
 		958159422CAFE7220096A9AF /* GameImproverUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958159412CAFE7220096A9AF /* GameImproverUITestsLaunchTests.swift */; };
+		95C290752D43D16600C6C215 /* CS2StatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C290742D43D16600C6C215 /* CS2StatsViewModel.swift */; };
+		95C290792D43D54A00C6C215 /* CS2Records.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C290782D43D54A00C6C215 /* CS2Records.swift */; };
+		95C2907B2D43DA3700C6C215 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2907A2D43DA3700C6C215 /* ProfileViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -195,7 +198,7 @@
 		95580C9F2CC77F7300DD8BCC /* KDA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KDA.swift; sourceTree = "<group>"; };
 		95580CA12CC77F8500DD8BCC /* KDAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KDAView.swift; sourceTree = "<group>"; };
 		95580CA52CC795F000DD8BCC /* MapTimeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTimeline.swift; sourceTree = "<group>"; };
-		95580CA82CC7A05C00DD8BCC /* ActualRank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActualRank.swift; sourceTree = "<group>"; };
+		95580CA82CC7A05C00DD8BCC /* ActualRatingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActualRatingHelper.swift; sourceTree = "<group>"; };
 		95580CAD2CCA1D5B00DD8BCC /* MatchDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailView.swift; sourceTree = "<group>"; };
 		95580CAF2CCA8D7000DD8BCC /* DotaHeroStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotaHeroStatsView.swift; sourceTree = "<group>"; };
 		95580CB32CCA9ACD00DD8BCC /* CS2StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CS2StatsView.swift; sourceTree = "<group>"; };
@@ -208,7 +211,7 @@
 		95580CC72CCB8BC900DD8BCC /* LanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageView.swift; sourceTree = "<group>"; };
 		95580CCA2CCB8D2300DD8BCC /* SettingsCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCellView.swift; sourceTree = "<group>"; };
 		95580CCC2CCB8D8800DD8BCC /* GameCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCellView.swift; sourceTree = "<group>"; };
-		95580CCE2CCF932400DD8BCC /* DotaMatchDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotaMatchDetails.swift; sourceTree = "<group>"; };
+		95580CCE2CCF932400DD8BCC /* CSMatchDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSMatchDetails.swift; sourceTree = "<group>"; };
 		95580CD02CCFE6ED00DD8BCC /* LastMatchesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastMatchesModel.swift; sourceTree = "<group>"; };
 		9567ED5F2D0063D300F6106D /* MatchDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchDetailModel.swift; sourceTree = "<group>"; };
 		9571B7632CB7D0A200743F1A /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -241,6 +244,9 @@
 		9581593F2CAFE7220096A9AF /* GameImproverUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameImproverUITests.swift; sourceTree = "<group>"; };
 		958159412CAFE7220096A9AF /* GameImproverUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameImproverUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		958159532CAFF9480096A9AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		95C290742D43D16600C6C215 /* CS2StatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CS2StatsViewModel.swift; sourceTree = "<group>"; };
+		95C290782D43D54A00C6C215 /* CS2Records.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CS2Records.swift; sourceTree = "<group>"; };
+		95C2907A2D43DA3700C6C215 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -324,7 +330,7 @@
 			isa = PBXGroup;
 			children = (
 				9575C1D62D0AFD0800DA4F9E /* DotaItem */,
-				95580CA72CC7A04100DD8BCC /* ActualRank */,
+				95580CA72CC7A04100DD8BCC /* ActualRatingHelper */,
 				95580CA42CC795DB00DD8BCC /* MapTimeline */,
 				95580C9E2CC77F6400DD8BCC /* KDAViews */,
 				9571B7672CB7E15600743F1A /* SpinnerView */,
@@ -370,6 +376,8 @@
 				9567ED5F2D0063D300F6106D /* MatchDetailModel.swift */,
 				9575C1D92D0C631500DA4F9E /* WinCondition.swift */,
 				9575C1DD2D0C63C300DA4F9E /* DotaMatchDetailModel.swift */,
+				95580CCE2CCF932400DD8BCC /* CSMatchDetails.swift */,
+				95C290782D43D54A00C6C215 /* CS2Records.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -556,7 +564,6 @@
 		95580C962CC2930F00DD8BCC /* Dota */ = {
 			isa = PBXGroup;
 			children = (
-				95580CCE2CCF932400DD8BCC /* DotaMatchDetails.swift */,
 				95580CD02CCFE6ED00DD8BCC /* LastMatchesModel.swift */,
 			);
 			path = Dota;
@@ -587,12 +594,12 @@
 			path = MapTimeline;
 			sourceTree = "<group>";
 		};
-		95580CA72CC7A04100DD8BCC /* ActualRank */ = {
+		95580CA72CC7A04100DD8BCC /* ActualRatingHelper */ = {
 			isa = PBXGroup;
 			children = (
-				95580CA82CC7A05C00DD8BCC /* ActualRank.swift */,
+				95580CA82CC7A05C00DD8BCC /* ActualRatingHelper.swift */,
 			);
-			path = ActualRank;
+			path = ActualRatingHelper;
 			sourceTree = "<group>";
 		};
 		95580CAC2CCA1D4C00DD8BCC /* MatchDetailView */ = {
@@ -623,6 +630,7 @@
 			isa = PBXGroup;
 			children = (
 				95580CB32CCA9ACD00DD8BCC /* CS2StatsView.swift */,
+				95C290742D43D16600C6C215 /* CS2StatsViewModel.swift */,
 			);
 			path = CS2Stats;
 			sourceTree = "<group>";
@@ -631,6 +639,7 @@
 			isa = PBXGroup;
 			children = (
 				95580CBF2CCB87EF00DD8BCC /* ProfileView.swift */,
+				95C2907A2D43DA3700C6C215 /* ProfileViewModel.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1004,6 +1013,7 @@
 				95580C9D2CC7745300DD8BCC /* MapStatisticView.swift in Sources */,
 				955576642CB675E700361FF3 /* ValidationEmptyError.swift in Sources */,
 				9567ED602D0063D300F6106D /* MatchDetailModel.swift in Sources */,
+				95C2907B2D43DA3700C6C215 /* ProfileViewModel.swift in Sources */,
 				955576622CB6709300361FF3 /* ValidateMinimumLength.swift in Sources */,
 				955576742CB697B700361FF3 /* LogoAnimationView.swift in Sources */,
 				95568F732CB00B600099E3DA /* Fonts.swift in Sources */,
@@ -1031,10 +1041,11 @@
 				9575C1D22D06FA7000DA4F9E /* MatchDetailViewModel.swift in Sources */,
 				95580C892CC1567B00DD8BCC /* APIService.swift in Sources */,
 				955576532CB6547000361FF3 /* UserModel.swift in Sources */,
-				95580CCF2CCF932400DD8BCC /* DotaMatchDetails.swift in Sources */,
+				95580CCF2CCF932400DD8BCC /* CSMatchDetails.swift in Sources */,
 				955576702CB692D100361FF3 /* ValidateMaximumLenght.swift in Sources */,
 				95580CA02CC77F7300DD8BCC /* KDA.swift in Sources */,
 				9575C1DA2D0C631500DA4F9E /* WinCondition.swift in Sources */,
+				95C290792D43D54A00C6C215 /* CS2Records.swift in Sources */,
 				95580CA22CC77F8500DD8BCC /* KDAView.swift in Sources */,
 				9571B7752CB9295600743F1A /* SettingsViewModel.swift in Sources */,
 				95580C862CC1186100DD8BCC /* NetworkService.swift in Sources */,
@@ -1048,7 +1059,7 @@
 				955576132CB556DF00361FF3 /* SignInView.swift in Sources */,
 				95580CC42CCB8B3400DD8BCC /* PrivacyView.swift in Sources */,
 				95568FAB2CB035A30099E3DA /* OnboardingData.swift in Sources */,
-				95580CA92CC7A05C00DD8BCC /* ActualRank.swift in Sources */,
+				95580CA92CC7A05C00DD8BCC /* ActualRatingHelper.swift in Sources */,
 				95580C912CC15A8800DD8BCC /* Endpoints.swift in Sources */,
 				9575C1E02D0C63E900DA4F9E /* MatchDetailHeader.swift in Sources */,
 				955576662CB675FF00361FF3 /* ValidationErrorEmptyPattern.swift in Sources */,
@@ -1067,6 +1078,7 @@
 				9575C1DE2D0C63C300DA4F9E /* DotaMatchDetailModel.swift in Sources */,
 				958159252CAFE71E0096A9AF /* GameImproverApp.swift in Sources */,
 				95580C8E2CC1587000DD8BCC /* UserInfo.swift in Sources */,
+				95C290752D43D16600C6C215 /* CS2StatsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

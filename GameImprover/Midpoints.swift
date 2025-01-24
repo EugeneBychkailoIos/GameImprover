@@ -18,6 +18,8 @@ enum Midpoints {
             return "IPlayerService/"
         case.steamUserStats:
             return "/ISteamUserStats/"
+        case .cs2Records:
+            return "ISteamUserStats/GetUserStatsForGame"
         }
     }
     
@@ -25,4 +27,5 @@ enum Midpoints {
     case steamUser
     case playerService
     case steamUserStats
+    case cs2Records
 }

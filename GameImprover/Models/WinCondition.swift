@@ -20,3 +20,8 @@ enum WinCondition: String {
         }
     }
 }
+
+func calculateWinRate(wins: Int, totalMatches: Int) -> Double {
+    guard totalMatches > 0 else { return 0 }
+    return (Double(wins) / Double(totalMatches)) * 100
+}

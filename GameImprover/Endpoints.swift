@@ -24,6 +24,10 @@ enum Endpoints {
             return "GetMatchHistory/v1/?key=" + key + "&account_id=" + id + "&matches_requested=" + "\(matches)"
         case.openDotaMatchById(let matchId, let key):
             return "matches/\(matchId)?api_key=\(key)"
+        case .getCS2Records(let key, let id):
+            return "/v2/?appid=730&key=" + key + "&steamid=" + id
+        case .getCS2LastMatches(let key, let id, let matchId):
+            return "GetMatchHistory/v1/?key=" + key + "&account_id=" + id + "&matches_requested=" + "\(matchId)"
         }
     }
     case getFriendList(String, String)
@@ -33,4 +37,6 @@ enum Endpoints {
     case getDotaMatchHistory(String,String)
     case getLastMatches(String, String, Int)
     case openDotaMatchById(String, String)
+    case getCS2Records(String, String)
+    case getCS2LastMatches(String, String, Int)
 }

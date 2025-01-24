@@ -5,65 +5,22 @@
 //  Created by jekster on 24.10.2024.
 //
 
-//import SwiftUI
-//
-//struct CS2StatsView: View {
-//    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-//    
-//    var btnBack: some View {
-//        Button(action: {
-//            self.presentationMode.wrappedValue.dismiss()
-//        }) {
-//            HStack {
-//                BaseText(text: "Go Back",
-//                         font: Fonts.jersey25,
-//                         foregroundColor: Colors.ancestralWater
-//                )
-//            }
-//        }
-//    }
-//    
-//    var body: some View {
-//        NavigationView {
-//            ZStack {
-//                LinearGradient(gradient: Gradient(colors: [Colors.obsidianShard.opacity(0.8),
-//                                                           Colors.obsidianShard]),
-//                               startPoint: .top, endPoint: .bottom)
-//                .edgesIgnoringSafeArea(.all)
-//                
-//                BaseText(text: "CS2 STATS",
-//                         font: Fonts.jersey25,
-//                         foregroundColor: Colors.ancestralWater
-//                )
-//            }
-//            .navigationBarItems(leading: btnBack)
-//            .navigationBarBackButtonHidden(true)
-//        }
-//        .navigationBarBackButtonHidden(true)
-//        .onAppear {
-//            Task {
-//               await getAllHeroImages()
-//            }
-//        }
-//    }
-//}
-
-
-
 import SwiftUI
 
 struct CS2StatsView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    @StateObject private var heroesService = HeroesService()
-    @State private var showModal = false
-    @State private var selectedHeroData: (image: Image, heroName: String, imageURL: String)? = nil
-
+    
+    @StateObject private var viewModel = CS2StatsViewModel()
+    
     var btnBack: some View {
         Button(action: {
             self.presentationMode.wrappedValue.dismiss()
         }) {
             HStack {
-                BaseText(text: "Go Back", font: Fonts.jersey25, foregroundColor: Colors.ancestralWater)
+                BaseText(text: "Go Back",
+                         font: Fonts.jersey25,
+                         foregroundColor: Colors.ancestralWater
+                )
             }
         }
     }
@@ -71,155 +28,181 @@ struct CS2StatsView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                LinearGradient(gradient: Gradient(colors: [Colors.obsidianShard.opacity(0.8), Colors.obsidianShard]), startPoint: .top, endPoint: .bottom)
-                    .edgesIgnoringSafeArea(.all)
+                LinearGradient(gradient: Gradient(colors: [Colors.obsidianShard.opacity(0.8),
+                                                           Colors.obsidianShard]),
+                               startPoint: .top, endPoint: .bottom)
+                .edgesIgnoringSafeArea(.all)
                 
-                VStack {
-                    BaseText(text: "CS2 STATS", font: Fonts.jersey25, foregroundColor: Colors.ancestralWater)
-                    
-                    ScrollView {
-                        LazyVStack {
-                            ForEach(heroesService.images.sorted(by: { $0.key < $1.key }), id: \.key) { heroID, heroData in
-                                HStack {
-                                    heroData.image
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 100, height: 100)
-                                        .padding()
-
-                                    VStack(alignment: .leading) {
-                                        Text("ID: \(heroID)")
-                                            .font(.headline)
-                                            .foregroundColor(Colors.ancestralWater)
-
-                                        Text(heroData.heroName)
-                                            .font(.subheadline)
-                                            .foregroundColor(Colors.ancestralWater)
-                                    }
+                GeometryReader { geometry in
+                    VStack {
+                        if viewModel.isLoading {
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle(tint: Colors.ancestralWater))
+                                .scaleEffect(2)
+                                .frame(width: geometry.size.width, height: geometry.size.height)
+                                .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+                        } else {
+                            ScrollView {
+                                ForEach(0..<10, id: \.self) { _ in
+                                    CS2RecordCell(name: "name", value: "value")
                                 }
-                                .padding(.vertical, 8)
+                                
                             }
                         }
-                        .padding(.horizontal, 16)
+                        
                     }
                 }
-                
-                VStack {
-                    Spacer()
-                    HStack {
-                        Spacer()
-                        Button(action: {
-                            showModal.toggle()
-                        }) {
-                            Image(systemName: "plus.circle.fill")
-                                .resizable()
-                                .frame(width: 50, height: 50)
-                                .foregroundColor(Colors.ancestralWater)
-                                .padding()
-                        }
+                .navigationBarBackButtonHidden(true)
+                .onAppear {
+                    Task {
+                        await viewModel.getCS2Matches()
                     }
                 }
             }
             .navigationBarItems(leading: btnBack)
             .navigationBarBackButtonHidden(true)
-            .onAppear {
-                Task {
-                    await heroesService.loadAllHeroImages()
-                }
-            }
-            .sheet(isPresented: $showModal) {
-                ModalView(heroData: $selectedHeroData, heroesService: heroesService)
-            }
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 
 
 
-import SwiftUI
-
-struct ModalView: View {
-    @Binding var heroData: (image: Image, heroName: String, imageURL: String)?
-    @State private var heroIDInput: String = ""
-    @ObservedObject var heroesService: HeroesService
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+struct CS2RecordCell: View {
+    var name: String
+    var value: String
     
     var body: some View {
-        NavigationView {
-            VStack {
-                Text("Enter Hero ID")
-                    .font(.headline)
-                    .padding(.top)
-                
-                TextField("Hero ID", text: $heroIDInput)
-                    .keyboardType(.numberPad)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-                
-                Button(action: {
-                    if let heroID = Int(heroIDInput) {
-                        if let data = heroesService.getHeroData(for: heroID) {
-                            heroData = data
-                        } else {
-                       
-                            if let heroName = heroesService.images[heroID]?.heroName,
-                               let imageURL = heroesService.images[heroID]?.imageURL {
-                                Task {
-                                    await heroesService.downloadHeroData(heroID: heroID)
-                                  
-                                    heroData = heroesService.getHeroData(for: heroID)
-                                }
-                            } else {
-                                print("Hero with ID \(heroID) not found in images.")
-                            }
-                        }
-                    } else {
-                        heroData = nil
-                    }
-                }) {
-                    Text("Get Hero Data")
-                        .padding()
-                        .background(Colors.obsidianShard)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                }
-                .padding()
-
-                if let hero = heroData {
-                    VStack {
-                        hero.image
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 150, height: 150)
-                            .padding()
-
-                        Text("ID: \(hero.heroName)")
-                            .font(.headline)
-                            .padding()
-
-                        Text(hero.heroName)
-                            .font(.subheadline)
-                            .padding()
-                    }
-                } else if !heroIDInput.isEmpty {
-                    Text("No data found for ID \(heroIDInput).")
-                        .foregroundColor(.red)
-                        .padding()
-                }
-                
-                Spacer()
-                
-                Button("Close") {
-                    presentationMode.wrappedValue.dismiss()
-                }
-                .padding()
-            }
-            .navigationTitle("Hero Details")
-            .onAppear {
-                if heroesService.images.isEmpty {
-                    print("No heroes loaded yet.")
-                }
-            }
+        VStack {
+            BaseText(text: name,
+                     font: Fonts.jersey10small,
+                     foregroundColor: Colors.ancestralWater
+            )
+            BaseText(text: value,
+                     font: Fonts.jersey10small,
+                     foregroundColor: Colors.ancestralWater
+            )
         }
     }
 }
+
+
+// should move to another views:
+
+
+struct MatchSummaryCell: View {
+    var matchesPlayed: String
+    var wins: String
+    var losses: String
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                BaseText(text: "Matches Played:", font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
+                Spacer()
+                BaseText(text: matchesPlayed, font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
+            }
+            HStack {
+                BaseText(text: "Wins:", font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
+                Spacer()
+                BaseText(text: wins, font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
+            }
+            HStack {
+                BaseText(text: "Losses:", font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
+                Spacer()
+                BaseText(text: losses, font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
+            }
+        }
+        .padding(.horizontal, 20)
+    }
+}
+
+
+struct KillsDeathsCell: View {
+    var kills: String
+    var deaths: String
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                BaseText(text: "Kills:", font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
+                Spacer()
+                BaseText(text: kills, font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
+            }
+            HStack {
+                BaseText(text: "Deaths:", font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
+                Spacer()
+                BaseText(text: deaths, font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
+            }
+        }
+        .padding(.horizontal, 20)
+    }
+}
+
+
+struct AccuracyCell: View {
+    var accuracy: String
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                BaseText(text: "Accuracy:", font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
+                Spacer()
+                BaseText(text: accuracy, font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
+            }
+        }
+        .padding(.horizontal, 20)
+    }
+}
+
+
+
+
+struct ScoreCell: View {
+    var score: String
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                BaseText(text: "Score:", font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
+                Spacer()
+                BaseText(text: score, font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
+            }
+        }
+        .padding(.horizontal, 20)
+    }
+}
+
+
+
+struct WeaponStatsCell: View {
+    var weaponName: String
+    var kills: String
+    var headshots: String
+    var damage: String
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                BaseText(text: "Weapon: \(weaponName)", font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
+            }
+            HStack {
+                BaseText(text: "Kills:", font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
+                Spacer()
+                BaseText(text: kills, font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
+            }
+            HStack {
+                BaseText(text: "Headshots:", font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
+                Spacer()
+                BaseText(text: headshots, font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
+            }
+            HStack {
+                BaseText(text: "Damage:", font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
+                Spacer()
+                BaseText(text: damage, font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
+            }
+        }
+        .padding(.horizontal, 20)
+    }
+}
+
