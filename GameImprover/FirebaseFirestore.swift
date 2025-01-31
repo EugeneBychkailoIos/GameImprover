@@ -98,7 +98,7 @@ class FirebaseFirestoreHelper {
     
 
     func getHeroImageURLByID(heroID: Int) async throws -> (String, String) {
-        guard let user = Auth.auth().currentUser else {
+        guard Auth.auth().currentUser != nil else {
             throw NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "User is not authenticated."])
         }
 
@@ -117,7 +117,7 @@ class FirebaseFirestoreHelper {
     
     
     func getAllHeroImages() async throws -> [(id: Int, imageURL: String, documentName: String)] {
-        guard let user = Auth.auth().currentUser else {
+        guard Auth.auth().currentUser != nil else {
             throw NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "User is not authenticated."])
         }
         
@@ -126,7 +126,7 @@ class FirebaseFirestoreHelper {
         guard !snapshot.documents.isEmpty else {
             throw NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "No documents found in Firestore."])
         }
-
+        
         var heroImages: [(id: Int, imageURL: String, documentName: String)] = []
         
         for document in snapshot.documents {
@@ -140,6 +140,47 @@ class FirebaseFirestoreHelper {
         
         return heroImages
     }
+    
+    
+    
+    func addDocuments(toCollection collection: String,
+                      data: [[String: Any]],
+                      completion: @escaping (Result<[Void], Error>) -> Void) {
+        var results: [Void] = []
+        let dispatchGroup = DispatchGroup()
+
+        for documentData in data {
+            dispatchGroup.enter()
+            db.collection(collection).addDocument(data: documentData) { error in
+                if let error = error {
+                    completion(.failure(error))
+                    dispatchGroup.leave()
+                    return
+                }
+                results.append(())
+                dispatchGroup.leave()
+            }
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            completion(.success(results))
+        }
+    }
+
+    // for check is document available.
+    
+    func documentExists(inCollection collection: String,
+                        documentID: String,
+                        completion: @escaping (Bool, Error?) -> Void) {
+        db.collection(collection).document(documentID).getDocument { document, error in
+            if let error = error {
+                completion(false, error)
+            } else {
+                completion(document?.exists ?? false, nil)
+            }
+        }
+    }
+
 
 
 }

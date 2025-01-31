@@ -28,6 +28,8 @@ enum Endpoints {
             return "/v2/?appid=730&key=" + key + "&steamid=" + id
         case .getCS2LastMatches(let key, let id, let matchId):
             return "GetMatchHistory/v1/?key=" + key + "&account_id=" + id + "&matches_requested=" + "\(matchId)"
+        case .getCS2UserItems(let id):
+            return "steamcommunity.com/inventory/" + id + "/730/2"
         }
     }
     case getFriendList(String, String)
@@ -39,4 +41,5 @@ enum Endpoints {
     case openDotaMatchById(String, String)
     case getCS2Records(String, String)
     case getCS2LastMatches(String, String, Int)
+    case getCS2UserItems(String)
 }

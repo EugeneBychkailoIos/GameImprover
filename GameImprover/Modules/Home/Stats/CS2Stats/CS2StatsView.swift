@@ -7,9 +7,9 @@
 
 import SwiftUI
 
+// Основний вигляд для статистики
 struct CS2StatsView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
     @StateObject private var viewModel = CS2StatsViewModel()
     
     var btnBack: some View {
@@ -19,8 +19,7 @@ struct CS2StatsView: View {
             HStack {
                 BaseText(text: "Go Back",
                          font: Fonts.jersey25,
-                         foregroundColor: Colors.ancestralWater
-                )
+                         foregroundColor: Colors.ancestralWater)
             }
         }
     }
@@ -28,8 +27,7 @@ struct CS2StatsView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                LinearGradient(gradient: Gradient(colors: [Colors.obsidianShard.opacity(0.8),
-                                                           Colors.obsidianShard]),
+                LinearGradient(gradient: Gradient(colors: [Colors.obsidianShard.opacity(0.8), Colors.obsidianShard]),
                                startPoint: .top, endPoint: .bottom)
                 .edgesIgnoringSafeArea(.all)
                 
@@ -43,16 +41,17 @@ struct CS2StatsView: View {
                                 .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
                         } else {
                             ScrollView {
-                                ForEach(0..<10, id: \.self) { _ in
-                                    CS2RecordCell(name: "name", value: "value")
+                                LazyVStack {
+                                    ForEach(0..<10, id: \.self) { _ in
+                                                                       CS2RecordCell(name: "name", value: "value")
+                                            .transition(.move(edge: .bottom))
+                                    }
                                 }
-                                
+                                .padding(.top, 10)
                             }
                         }
-                        
                     }
                 }
-                .navigationBarBackButtonHidden(true)
                 .onAppear {
                     Task {
                         await viewModel.getCS2Matches()
@@ -62,33 +61,67 @@ struct CS2StatsView: View {
             .navigationBarItems(leading: btnBack)
             .navigationBarBackButtonHidden(true)
         }
-        .navigationBarBackButtonHidden(true)
     }
 }
 
-
-
+// Оновлена "Record" клітинка з анімацією і стилями
 struct CS2RecordCell: View {
     var name: String
     var value: String
     
+    @State private var isPressed = false
+    
     var body: some View {
         VStack {
-            BaseText(text: name,
-                     font: Fonts.jersey10small,
-                     foregroundColor: Colors.ancestralWater
-            )
-            BaseText(text: value,
-                     font: Fonts.jersey10small,
-                     foregroundColor: Colors.ancestralWater
-            )
+            HStack {
+                BaseText(text: name,
+                         font: Fonts.jersey10small,
+                         foregroundColor: Colors.ancestralWater)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading, 20)
+                Spacer()
+                BaseText(text: value,
+                         font: Fonts.jersey10small,
+                         foregroundColor: Colors.ancestralWater)
+                    .padding(.trailing, 20)
+            }
+            .padding()
+            .background(isPressed ? Colors.ancestralWater.opacity(0.2) : Color.clear)
+            .cornerRadius(12)
+            .shadow(color: Colors.ancestralWater.opacity(0.1), radius: 5, x: 0, y: 5)
+            .scaleEffect(isPressed ? 0.98 : 1.0)
+            .animation(.easeInOut(duration: 0.1), value: isPressed)
+            .onTapGesture {
+                withAnimation {
+                    isPressed.toggle()
+                }
+            }
         }
+        .padding(.horizontal, 10)
+        .padding(.vertical, 5)
+        .transition(.scale)
     }
 }
 
-
-// should move to another views:
-
+struct StatsCell: View {
+    var title: String
+    var value: String
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                BaseText(text: title, font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
+                Spacer()
+                BaseText(text: value, font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
+            }
+            .padding(.horizontal, 20)
+            .background(Colors.ancestralWater.opacity(0.1))
+            .cornerRadius(10)
+            .shadow(radius: 3)
+        }
+        .padding(.vertical, 5)
+    }
+}
 
 struct MatchSummaryCell: View {
     var matchesPlayed: String
@@ -97,26 +130,14 @@ struct MatchSummaryCell: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            HStack {
-                BaseText(text: "Matches Played:", font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
-                Spacer()
-                BaseText(text: matchesPlayed, font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
-            }
-            HStack {
-                BaseText(text: "Wins:", font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
-                Spacer()
-                BaseText(text: wins, font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
-            }
-            HStack {
-                BaseText(text: "Losses:", font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
-                Spacer()
-                BaseText(text: losses, font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
-            }
+            StatsCell(title: "Matches Played:", value: matchesPlayed)
+            StatsCell(title: "Wins:", value: wins)
+            StatsCell(title: "Losses:", value: losses)
         }
         .padding(.horizontal, 20)
+        .padding(.top, 10)
     }
 }
-
 
 struct KillsDeathsCell: View {
     var kills: String
@@ -124,56 +145,31 @@ struct KillsDeathsCell: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            HStack {
-                BaseText(text: "Kills:", font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
-                Spacer()
-                BaseText(text: kills, font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
-            }
-            HStack {
-                BaseText(text: "Deaths:", font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
-                Spacer()
-                BaseText(text: deaths, font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
-            }
+            StatsCell(title: "Kills:", value: kills)
+            StatsCell(title: "Deaths:", value: deaths)
         }
         .padding(.horizontal, 20)
+        .padding(.top, 10)
     }
 }
-
 
 struct AccuracyCell: View {
     var accuracy: String
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack {
-                BaseText(text: "Accuracy:", font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
-                Spacer()
-                BaseText(text: accuracy, font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
-            }
-        }
-        .padding(.horizontal, 20)
+        StatsCell(title: "Accuracy:", value: accuracy)
+            .padding(.top, 10)
     }
 }
-
-
-
 
 struct ScoreCell: View {
     var score: String
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack {
-                BaseText(text: "Score:", font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
-                Spacer()
-                BaseText(text: score, font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
-            }
-        }
-        .padding(.horizontal, 20)
+        StatsCell(title: "Score:", value: score)
+            .padding(.top, 10)
     }
 }
-
-
 
 struct WeaponStatsCell: View {
     var weaponName: String
@@ -183,26 +179,13 @@ struct WeaponStatsCell: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            HStack {
-                BaseText(text: "Weapon: \(weaponName)", font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
-            }
-            HStack {
-                BaseText(text: "Kills:", font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
-                Spacer()
-                BaseText(text: kills, font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
-            }
-            HStack {
-                BaseText(text: "Headshots:", font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
-                Spacer()
-                BaseText(text: headshots, font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
-            }
-            HStack {
-                BaseText(text: "Damage:", font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
-                Spacer()
-                BaseText(text: damage, font: Fonts.jersey10small, foregroundColor: Colors.ancestralWater)
-            }
+            StatsCell(title: "Weapon:", value: weaponName)
+            StatsCell(title: "Kills:", value: kills)
+            StatsCell(title: "Headshots:", value: headshots)
+            StatsCell(title: "Damage:", value: damage)
         }
         .padding(.horizontal, 20)
+        .padding(.top, 10)
     }
 }
 

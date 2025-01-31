@@ -17,7 +17,7 @@ protocol ApiServiceProtoc {
     // CS2
     func getUserAllRecords(key: String, id: String ) async throws -> [Playerstats]
     func getLastCS2Matches(key: String, id: String, matchId: Int) async throws -> [CS2Match]
-    
+    func getCS2UserItems(id: String) async throws -> InventoryItem
 }
 
  class Api {
@@ -34,6 +34,19 @@ protocol ApiServiceProtoc {
 }
 
 extension Api: ApiServiceProtoc {
+    func getCS2UserItems(id: String) async throws -> InventoryItem {
+        guard let url = URL(string: "https://" + Endpoints.getCS2UserItems(id).pass) else {
+            throw NSError(domain: "Invalid URL", code: 0, userInfo: nil)
+        }
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let data = try await networkService.request(request: request)
+        
+        let items = try decoder.decode(InventoryItem.self, from: data)
+        return items
+    }
+    
     func getLastCS2Matches(key: String, id: String, matchId: Int) async throws -> [CS2Match] {
         guard let url = URL(string: base +  Midpoints.cs2Records.pass + Endpoints.getCS2LastMatches(key, id, matchId).pass) else {
             throw NSError(domain: "Invalid URL", code: 0, userInfo: nil)

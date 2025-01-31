@@ -127,6 +127,8 @@
 		95C290752D43D16600C6C215 /* CS2StatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C290742D43D16600C6C215 /* CS2StatsViewModel.swift */; };
 		95C290792D43D54A00C6C215 /* CS2Records.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C290782D43D54A00C6C215 /* CS2Records.swift */; };
 		95C2907B2D43DA3700C6C215 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C2907A2D43DA3700C6C215 /* ProfileViewModel.swift */; };
+		95C290822D4D145B00C6C215 /* AIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C290812D4D145B00C6C215 /* AIService.swift */; };
+		95C290842D4D148F00C6C215 /* AIServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C290832D4D148F00C6C215 /* AIServiceModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -247,6 +249,8 @@
 		95C290742D43D16600C6C215 /* CS2StatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CS2StatsViewModel.swift; sourceTree = "<group>"; };
 		95C290782D43D54A00C6C215 /* CS2Records.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CS2Records.swift; sourceTree = "<group>"; };
 		95C2907A2D43DA3700C6C215 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		95C290812D4D145B00C6C215 /* AIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIService.swift; sourceTree = "<group>"; };
+		95C290832D4D148F00C6C215 /* AIServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIServiceModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -396,6 +400,7 @@
 		955576542CB654CA00361FF3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				95C2907C2D4D13E800C6C215 /* AIService */,
 				95580C8F2CC15A7E00DD8BCC /* Endpoints */,
 				95580C8A2CC1569D00DD8BCC /* Midpoints */,
 				95580C872CC1566800DD8BCC /* APIService */,
@@ -828,6 +833,15 @@
 			path = GameImproverUITests;
 			sourceTree = "<group>";
 		};
+		95C2907C2D4D13E800C6C215 /* AIService */ = {
+			isa = PBXGroup;
+			children = (
+				95C290812D4D145B00C6C215 /* AIService.swift */,
+				95C290832D4D148F00C6C215 /* AIServiceModel.swift */,
+			);
+			name = AIService;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1010,6 +1024,7 @@
 				9571B77F2CB92A6200743F1A /* DotaStatsViewModel.swift in Sources */,
 				955576602CB66D8500361FF3 /* ValidationRule.swift in Sources */,
 				9571B7732CB9294700743F1A /* SettingsView.swift in Sources */,
+				95C290842D4D148F00C6C215 /* AIServiceModel.swift in Sources */,
 				95580C9D2CC7745300DD8BCC /* MapStatisticView.swift in Sources */,
 				955576642CB675E700361FF3 /* ValidationEmptyError.swift in Sources */,
 				9567ED602D0063D300F6106D /* MatchDetailModel.swift in Sources */,
@@ -1069,6 +1084,7 @@
 				95580CC82CCB8BC900DD8BCC /* LanguageView.swift in Sources */,
 				9571B77D2CB92A5700743F1A /* GamesViewModel.swift in Sources */,
 				95580CBE2CCB853500DD8BCC /* LogoutView.swift in Sources */,
+				95C290822D4D145B00C6C215 /* AIService.swift in Sources */,
 				955576592CB660A700361FF3 /* SteamAuthWebView.swift in Sources */,
 				95580CA62CC795F000DD8BCC /* MapTimeline.swift in Sources */,
 				95580CC62CCB8B7600DD8BCC /* AppearanceView.swift in Sources */,
